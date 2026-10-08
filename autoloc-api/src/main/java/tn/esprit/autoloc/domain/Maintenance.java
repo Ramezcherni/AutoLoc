@@ -28,4 +28,7 @@ public class Maintenance {
 
     @NotBlank
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private Vehicule vehicule;
 }

@@ -28,4 +28,12 @@ public class Agence {
 
     @NotBlank
     private String telephone;
+
+    @OneToMany(mappedBy = "agence", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @Builder.Default
+    private Set<Vehicule> vehicules = new HashSet<>();
+
+    @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
+    @Builder.Default
+    private Set<Employe> employes = new HashSet<>();
 }

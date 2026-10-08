@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "equipement")
 @Getter
@@ -19,4 +22,8 @@ public class Equipement {
 
     @NotBlank
     private String libelle;
+
+    @ManyToMany(mappedBy = "equipements", fetch = FetchType.LAZY)
+    @Builder.Default
+    private Set<Vehicule> vehicules = new HashSet<>();
 }

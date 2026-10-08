@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "client")
@@ -41,4 +43,8 @@ public class Client {
 
     @NotNull
     private LocalDate dateInscription;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @Builder.Default
+    private Set<Reservation> reservations = new HashSet<>();
 }
